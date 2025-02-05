@@ -35,6 +35,7 @@
 
       <div>
         <h2>Vēsture:</h2>
+        <p id="history"></p>
       </div>
     </div>
     <script>
@@ -45,6 +46,7 @@
       const fromCurrencyInput = document.getElementById("from-currency");
       const btn = document.getElementById("convert-btn");
       const result = document.getElementById("result");
+      const historyOut = document.getElementById("history")
 
       btn.addEventListener("click", handleClick);
 
@@ -73,9 +75,14 @@
         }
 
         result.innerHTML = `${amount} ${fromCurrency} = ${convertedAmount} ${toCurrency}`;
+        const history = (result);
       }
       if (isNaN(amount) || amount <= 0) {
         result.innerHTML = "Ievadi derīgu daudzumu";
+      }
+
+      function history(){
+        historyOut.push (result)
       }
     </script>
   </body>
