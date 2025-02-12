@@ -39,21 +39,25 @@
       </div>
     </div>
     <script>
-        
-
       const amountInput = document.getElementById("amount");
       const toCurrencyInput = document.getElementById("to-currency");
       const fromCurrencyInput = document.getElementById("from-currency");
       const btn = document.getElementById("convert-btn");
       const result = document.getElementById("result");
-      const historyOut = document.getElementById("history")
+      const historyOut = document.getElementById("history");
+      let historyArray = [];
 
       btn.addEventListener("click", handleClick);
 
       function handleClick() {
+        // let historyArray;
         const amount = parseFloat(amountInput.value);
         const toCurrency = toCurrencyInput.value;
         const fromCurrency = fromCurrencyInput.value;
+
+        if (isNaN(amount) || amount <= 0) {
+          result.innerHTML = "Ievadi derīgu daudzumu";
+        }
 
         let convertedAmount;
         switch (fromCurrency) {
@@ -74,15 +78,15 @@
             break;
         }
 
-        result.innerHTML = `${amount} ${fromCurrency} = ${convertedAmount} ${toCurrency}`;
-        const history = (result);
-      }
-      if (isNaN(amount) || amount <= 0) {
-        result.innerHTML = "Ievadi derīgu daudzumu";
+        let historyRecord = `${amount} ${fromCurrency} = ${convertedAmount} ${toCurrency}`;
+        result.innerHTML = historyRecord;
+        //const history = result;
+        historyArray.push(historyRecord);
+        historyOut.innerHTML = historyArray.join("<br>");
       }
 
-      function history(){
-        historyOut.push (result)
+      function history() {
+        historyOut.push(result);
       }
     </script>
   </body>
